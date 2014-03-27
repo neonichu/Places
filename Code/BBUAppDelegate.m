@@ -23,15 +23,17 @@ static NSString* const BBUMovesURLScheme    = @"my://movesUrlScheme";
                                         oauthClientSecret:BBUMovesClientSecret
                                         callbackUrlScheme:BBUMovesURLScheme];
     
+    BBUPlacesViewController* placesViewController = [BBUPlacesViewController new];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[BBUPlacesViewController new]];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:placesViewController];
     [self.window makeKeyAndVisible];
     
     [[MovesAPI sharedInstance] authorizationWithViewController:self.window.rootViewController
                                                        success:^{
                                                            [[MovesAPI sharedInstance] getUserSuccess:^(MVUser *user) {
-                                                               NSLog(@"%@", user);
+                                                               [placesViewController refresh];
                                                            } failure:^(NSError *error) {
                                                                [self showError:error];
                                                            }];

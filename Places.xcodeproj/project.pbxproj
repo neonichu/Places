@@ -15,6 +15,7 @@
 		86FB842C18E4D680008A41BA /* BBUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FB842B18E4D680008A41BA /* BBUAppDelegate.m */; };
 		86FB842E18E4D680008A41BA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86FB842D18E4D680008A41BA /* Images.xcassets */; };
 		86FB844D18E4DBA5008A41BA /* BBUPlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FB844C18E4DBA5008A41BA /* BBUPlacesViewController.m */; };
+		86FB845018E4E2D9008A41BA /* BBUPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FB844F18E4E2D9008A41BA /* BBUPlace.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,8 @@
 		86FB842D18E4D680008A41BA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		86FB844B18E4DBA5008A41BA /* BBUPlacesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBUPlacesViewController.h; sourceTree = "<group>"; };
 		86FB844C18E4DBA5008A41BA /* BBUPlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBUPlacesViewController.m; sourceTree = "<group>"; };
+		86FB844E18E4E2D9008A41BA /* BBUPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBUPlace.h; sourceTree = "<group>"; };
+		86FB844F18E4E2D9008A41BA /* BBUPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBUPlace.m; sourceTree = "<group>"; };
 		D376BD0E15CC4510BD225856 /* libPods-Places.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Places.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -85,6 +88,8 @@
 			children = (
 				86FB842A18E4D680008A41BA /* BBUAppDelegate.h */,
 				86FB842B18E4D680008A41BA /* BBUAppDelegate.m */,
+				86FB844E18E4E2D9008A41BA /* BBUPlace.h */,
+				86FB844F18E4E2D9008A41BA /* BBUPlace.m */,
 				86FB844B18E4DBA5008A41BA /* BBUPlacesViewController.h */,
 				86FB844C18E4DBA5008A41BA /* BBUPlacesViewController.m */,
 			);
@@ -211,6 +216,7 @@
 				86FB842C18E4D680008A41BA /* BBUAppDelegate.m in Sources */,
 				86FB844D18E4DBA5008A41BA /* BBUPlacesViewController.m in Sources */,
 				86FB842818E4D680008A41BA /* main.m in Sources */,
+				86FB845018E4E2D9008A41BA /* BBUPlace.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

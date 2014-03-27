@@ -10,4 +10,6 @@
 
 @interface BBUPlacesViewController : UIViewController
 
+-(void)refresh;
+
 @end
