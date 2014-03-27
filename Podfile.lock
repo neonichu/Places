@@ -1,0 +1,10 @@
+PODS:
+  - moves-ios-sdk (0.1.1)
+
+DEPENDENCIES:
+  - moves-ios-sdk
+
+SPEC CHECKSUMS:
+  moves-ios-sdk: 2909733793bcea629b476958dd39aa61342593a2
+
+COCOAPODS: 0.29.0
