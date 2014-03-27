@@ -6,44 +6,62 @@
 //  Copyright (c) 2014 Boris Bügling. All rights reserved.
 //
 
+#import <moves-ios-sdk/MovesAPI.h>
+
 #import "BBUAppDelegate.h"
+#import "BBUPlacesViewController.h"
+
+static NSString* const BBUMovesClientId     = @"MyMovesClientId";
+static NSString* const BBUMovesClientSecret = @"MyMovesClientSecret";
+static NSString* const BBUMovesURLScheme    = @"my://movesUrlScheme";
 
 @implementation BBUAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[MovesAPI sharedInstance] setShareMovesOauthClientId:BBUMovesClientId
+                                        oauthClientSecret:BBUMovesClientSecret
+                                        callbackUrlScheme:BBUMovesURLScheme];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[BBUPlacesViewController new]];
     [self.window makeKeyAndVisible];
+    
+    [[MovesAPI sharedInstance] authorizationWithViewController:self.window.rootViewController
+                                                       success:^{
+                                                           [[MovesAPI sharedInstance] getUserSuccess:^(MVUser *user) {
+                                                               NSLog(@"%@", user);
+                                                           } failure:^(NSError *error) {
+                                                               [self showError:error];
+                                                           }];
+                                                       } failure:^(NSError *error) {
+                                                           [self showError:error];
+                                                       }];
+    
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
 {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    if ([[MovesAPI sharedInstance] canHandleOpenUrl:url]) {
+        return YES;
+    }
+
+    return NO;
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
+- (void)showError:(NSError*)error
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+                                                        message:error.localizedDescription
+                                                       delegate:nil
+                                              cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                              otherButtonTitles:nil];
+    [alertView show];
 }
 
 @end
