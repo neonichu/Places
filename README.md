@@ -1,5 +1,7 @@
 # Places
 
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
 Places uses the [Moves][1] API to visualize which places you spent the most
 time at in the last seven days.
 
